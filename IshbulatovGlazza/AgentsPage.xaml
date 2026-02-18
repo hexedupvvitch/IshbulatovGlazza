@@ -59,7 +59,7 @@
         <ListView Name ="AgentsListView" Grid.Row="1" Grid.ColumnSpan="3" SelectionChanged="AgentsListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="{Binding FonStyle}" ShowGridLines="False">
+                    <Grid ShowGridLines="False">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="700"/>
