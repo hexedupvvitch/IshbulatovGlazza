@@ -107,8 +107,6 @@
                         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
                             <TextBlock Text="{Binding Discount, StringFormat={}{0}%}" FontSize="25"></TextBlock>
                         </StackPanel>
-
-
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

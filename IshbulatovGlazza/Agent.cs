@@ -24,6 +24,8 @@ namespace IshbulatovGlazza
     
         public int ID { get; set; }
         public int AgentTypeID { get; set; }
+        public int Prod { get; set; }
+        public int Discount { get; set; }
         public string AgentText
         {
             get
