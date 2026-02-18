@@ -1,0 +1,117 @@
+﻿<Page x:Class="IshbulatovGlazza.AgentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IshbulatovGlazza"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AgentsPage" FontFamily="Century Gothic">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.ColumnSpan="3">
+
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock Text="поиск по наименованию" FontSize="15"></TextBlock>
+                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
+                 Width="250" FontSize="15"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <ComboBox Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged"
+                  FontSize="15" Width="300">
+                    <TextBlock>сортировка</TextBlock>
+                    <TextBlock>от А до Я</TextBlock>
+                    <TextBlock>от Я до А</TextBlock>
+                    <TextBlock>приоритет по возрастанию</TextBlock>
+                    <TextBlock>приоритет по убыванию</TextBlock>
+                    <TextBlock>скидка по возрастанию</TextBlock>
+                    <TextBlock>скидка по убыванию</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged"
+            FontSize="15" Width="150">
+                    <TextBlock>все типы</TextBlock>
+                    <TextBlock>МФО</TextBlock>
+                    <TextBlock>ООО</TextBlock>
+                    <TextBlock>ЗАО</TextBlock>
+                    <TextBlock>МКК</TextBlock>
+                    <TextBlock>ОАО</TextBlock>
+                    <TextBlock>ПАО</TextBlock>
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+
+
+        <ListView Name ="AgentsListView" Grid.Row="1" Grid.ColumnSpan="3" SelectionChanged="AgentsListView_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{Binding FonStyle}" ShowGridLines="False">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="700"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Image Width="200" Grid.Column="0" Grid.RowSpan="4"
+                       Stretch="UniformToFill" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <Binding Path="Logo">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            agents/picture.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding AgentType.Title}" FontSize="20" Margin="5"></TextBlock>
+                            <TextBlock Text="|" FontSize="20" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding Title}" FontSize="20" TextWrapping="Wrap" Margin="5"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="продаж за год:" FontSize="15"></TextBlock>
+                            <TextBlock Text="{Binding Prod}" FontSize="15"></TextBlock>
+                        </StackPanel>
+
+                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="15"></TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+                            <TextBlock Text="Приоритетность: " FontSize="15" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding Priority}" Margin="5" FontSize="15"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
+                            <TextBlock Text="{Binding Discount, StringFormat={}{0}%}" FontSize="25"></TextBlock>
+                        </StackPanel>
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
