@@ -76,10 +76,20 @@
     <Compile Include="AgentType.cs">
       <DependentUpon>IshbulatovEyez.tt</DependentUpon>
     </Compile>
+    <Compile Include="IshbulatovEyez.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IshbulatovEyez.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="IshbulatovEyez.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IshbulatovEyez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IshbulatovEyez.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IshbulatovEyez.edmx</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="Material.cs">
@@ -123,16 +133,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IshbulatovEyez.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IshbulatovEyez.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IshbulatovEyez.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IshbulatovEyez.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -307,19 +307,21 @@
     <Resource Include="agents\agent_98.png" />
     <Resource Include="agents\agent_99.png" />
     <Resource Include="agents\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="IshbulatovEyez.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IshbulatovEyez.Context.cs</LastGenOutput>
       <DependentUpon>IshbulatovEyez.edmx</DependentUpon>
+      <LastGenOutput>IshbulatovEyez.Context.cs</LastGenOutput>
     </Content>
     <Content Include="IshbulatovEyez.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IshbulatovEyez.edmx</DependentUpon>
       <LastGenOutput>IshbulatovEyez.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

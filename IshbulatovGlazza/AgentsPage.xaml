@@ -95,7 +95,7 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
                             <TextBlock Text="продаж за год:" FontSize="15"></TextBlock>
-                            <TextBlock Text="{Binding Prod}" FontSize="15"></TextBlock>
+                            <TextBlock Text="{Binding SalesforYear}" FontSize="15"></TextBlock>
                         </StackPanel>
 
                         <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="15"></TextBlock>

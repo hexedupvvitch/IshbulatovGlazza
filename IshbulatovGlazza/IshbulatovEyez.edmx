@@ -672,7 +672,7 @@
           <End Role="Material" Type="Self.Material" Multiplicity="*" />
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="IshbulatovEyezEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="IshbulatovEyezEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agent" EntityType="Self.Agent" />
           <EntitySet Name="AgentPriorityHistory" EntityType="Self.AgentPriorityHistory" />
           <EntitySet Name="AgentType" EntityType="Self.AgentType" />
@@ -740,7 +740,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище IshbulatovEyezModelContainer" CdmEntityContainer="IshbulatovEyezEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище IshbulatovEyezModelContainer" CdmEntityContainer="IshbulatovEyezEntities1">
           <EntitySetMapping Name="Agent">
             <EntityTypeMapping TypeName="IshbulatovEyezModel.Agent">
               <MappingFragment StoreEntitySet="Agent">

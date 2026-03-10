@@ -24,15 +24,6 @@ namespace IshbulatovGlazza
     
         public int ID { get; set; }
         public int AgentTypeID { get; set; }
-        public int Prod { get; set; }
-        public int Discount { get; set; }
-        public string AgentText
-        {
-            get
-            {
-                return AgentType.Title;
-            }
-        }
         public string Title { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -42,7 +33,51 @@ namespace IshbulatovGlazza
         public string DirectorName { get; set; }
         public string INN { get; set; }
         public string KPP { get; set; }
-    
+
+
+        public int SalesforYear //продажи за год высчитывается просто складывая количество продукта из таблицы продукт для каждой продажи
+        {
+            get
+            {
+                int s = 0;
+                foreach (ProductSale p in ProductSale)
+                {
+                    TimeSpan timeDifference = DateTime.Today.Date - p.SaleDate.Date;
+                    if ((int)timeDifference.TotalDays <= 365)
+                        s += p.ProductCount;
+                }
+                return s;
+            }
+        }
+        public decimal Sales //сумма продаж высчитывается складывая стоимость каждой продажи
+        {
+            get
+            {
+                decimal s = 0;
+                foreach (ProductSale p in ProductSale)
+                {
+                    s += p.Stoimost;
+                }
+                return s;
+            }
+        }
+
+        public int Discount //используется для расчета процентов по скидке на основе суммы продаж
+        {
+            get
+            {
+                if (Sales >= 500000)
+                    return 25;
+                if (Sales >= 150000)
+                    return 20;
+                if (Sales >= 50000)
+                    return 10;
+                if (Sales >= 1000)
+                    return 5;
+                return 0;
+            }
+        }
+
         public virtual AgentType AgentType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AgentPriorityHistory> AgentPriorityHistory { get; set; }
@@ -50,5 +85,6 @@ namespace IshbulatovGlazza
         public virtual ICollection<ProductSale> ProductSale { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shop> Shop { get; set; }
+        public string AgentText { get; internal set; }
     }
 }
