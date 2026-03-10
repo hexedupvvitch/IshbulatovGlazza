@@ -75,6 +75,39 @@ namespace IshbulatovGlazza
 
 
             AgentsListView.ItemsSource = currentAgents;
+            TableList = currentAgents;
+            ChangePage(0, 0);
+        }
+        int CountRecords, CountPage, CurrentPage = 0;
+        const int RecordsPage = 10;
+        List<Agent> CurrentPageList = new List<Agent>();
+        List<Agent> TableList;
+        public void ChangePage(int direction, int? selectedPage)
+        {
+            CurrentPageList.Clear();
+            CountRecords = TableList.Count;
+            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage;
+
+            if (selectedPage.HasValue && selectedPage >= 0 && selectedPage < CountPage)
+                CurrentPage = selectedPage.Value;
+            else if (direction == 1 && CurrentPage > 0)
+                CurrentPage--;
+            else if (direction == 2 && CurrentPage < CountPage - 1)
+                CurrentPage++;
+            else
+                return;
+
+            int start = CurrentPage * RecordsPage;
+            int end = Math.Min(start + RecordsPage, CountRecords);
+            for (int i = start; i < end; i++)
+                CurrentPageList.Add(TableList[i]);
+
+            PageListBox.Items.Clear();
+            for (int i = 1; i <= CountPage; i++)
+                PageListBox.Items.Add(i);
+            PageListBox.SelectedIndex = CurrentPage;
+            AgentsListView.ItemsSource = CurrentPageList;
+            AgentsListView.Items.Refresh();
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -100,6 +133,21 @@ namespace IshbulatovGlazza
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
             UpdateAgents();
+        }
+
+        private void RightDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(2, null);
+        }
+
+        private void LeftDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(1, null);
+        }
+
+        private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
         }
     }
 }

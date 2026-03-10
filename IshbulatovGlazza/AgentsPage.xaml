@@ -111,5 +111,16 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button Name="LeftDirButton" Content="&lt;" Width="25" Height="25" Click="LeftDirButton_Click" Background="#B175EE"/>
+            <ListBox FontSize="20" Name="PageListBox" MouseUp="PageListBox_MouseUp">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Button Name="RightDirButton" Content="&gt;" Width="25" Height="25" Click="RightDirButton_Click" Background="#B175EE"/>
+        </StackPanel>
     </Grid>
 </Page>
