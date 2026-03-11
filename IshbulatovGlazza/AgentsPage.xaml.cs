@@ -79,35 +79,35 @@ namespace IshbulatovGlazza
             ChangePage(0, 0);
         }
         int CountRecords, CountPage, CurrentPage = 0;
-        const int RecordsPage = 10;
+        const int RecordsPage = 10; //количество записей на странице всегда 10
         List<Agent> CurrentPageList = new List<Agent>();
         List<Agent> TableList;
         public void ChangePage(int direction, int? selectedPage)
         {
             CurrentPageList.Clear();
-            CountRecords = TableList.Count;
-            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage;
+            CountRecords = TableList.Count; //записываем сколько всего записей в таблице
+            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage; // вычисляем сколько всего страниц получится(-1 чтобы при ровном кол-ве агентов 20.30 там, число страниц было не на 1 больше)
 
             if (selectedPage.HasValue && selectedPage >= 0 && selectedPage < CountPage)
-                CurrentPage = selectedPage.Value;
+                CurrentPage = selectedPage.Value; //проверка на выбор существующей страницы или номер страницы не отрицательный, если проверка удачная, переходим на выбранную страницу
             else if (direction == 1 && CurrentPage > 0)
-                CurrentPage--;
+                CurrentPage--; //иначе есил нажали влево и текущая страница не первая, то номер страницы уменьшается на 1
             else if (direction == 2 && CurrentPage < CountPage - 1)
-                CurrentPage++;
+                CurrentPage++; //иначе есил нажали вправо и текущая страница не последняя, то номер страницы увеличивается на 1
             else
-                return;
+                return;//если ни одно условие не подошло, то ничего не делается
 
-            int start = CurrentPage * RecordsPage;
-            int end = Math.Min(start + RecordsPage, CountRecords);
+            int start = CurrentPage * RecordsPage; //вычисляется индекс первого агента на странице
+            int end = Math.Min(start + RecordsPage, CountRecords);//берем наименьшее из start+recordspage или countrecords чтобы не выйти за границы списка
             for (int i = start; i < end; i++)
-                CurrentPageList.Add(TableList[i]);
+                CurrentPageList.Add(TableList[i]);//берем агента из списка и добавляем его в текущую страницу
 
-            PageListBox.Items.Clear();
+            PageListBox.Items.Clear();//очистка списка номеров страниц
             for (int i = 1; i <= CountPage; i++)
-                PageListBox.Items.Add(i);
+                PageListBox.Items.Add(i);//добавляем номер страницы в список
             PageListBox.SelectedIndex = CurrentPage;
             AgentsListView.ItemsSource = CurrentPageList;
-            AgentsListView.Items.Refresh();
+            AgentsListView.Items.Refresh();//перезагрузка списка чтобы видеть изменения
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -147,7 +147,7 @@ namespace IshbulatovGlazza
 
         private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
+            ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1); //convert берет стринговую цифру и превращает ее в инт, отнимает 1 потому что компьютер начинает отсчет не с 1 а с 0
         }
     }
 }
