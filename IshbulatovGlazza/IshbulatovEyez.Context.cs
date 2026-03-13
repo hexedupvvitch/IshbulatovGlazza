@@ -13,19 +13,19 @@ namespace IshbulatovGlazza
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class IshbulatovEyezEntities1 : DbContext
+    public partial class IshbulatovEyezEntities : DbContext
     {
-        private static IshbulatovEyezEntities1 _context;
+        private static IshbulatovEyezEntities _context;
 
-        public static IshbulatovEyezEntities1 GetContext()
+        public static IshbulatovEyezEntities GetContext()
         {
             if (_context == null)
-                _context = new IshbulatovEyezEntities1();
+                _context = new IshbulatovEyezEntities();
 
             return _context;
         }
-        public IshbulatovEyezEntities1()
-            : base("name=IshbulatovEyezEntities1")
+            public IshbulatovEyezEntities()
+            : base("name=IshbulatovEyezEntities")
         {
         }
     

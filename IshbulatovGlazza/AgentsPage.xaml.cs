@@ -23,7 +23,7 @@ namespace IshbulatovGlazza
         public AgentsPage()
         {
             InitializeComponent();
-            var currentAgents = IshbulatovEyezEntities1.GetContext().Agent.ToList();
+            var currentAgents = IshbulatovEyezEntities.GetContext().Agent.ToList();
             AgentsListView.ItemsSource = currentAgents;
 
             ComboType.SelectedIndex = 0;
@@ -33,20 +33,20 @@ namespace IshbulatovGlazza
         }
         private void UpdateAgents()
         {
-            var currentAgents = IshbulatovEyezEntities1.GetContext().Agent.ToList();
+            var currentAgents = IshbulatovEyezEntities.GetContext().Agent.ToList();
 
             if (ComboType.SelectedIndex == 1)
-            currentAgents = currentAgents.Where(p => p.AgentText == "МФО").ToList(); // ищет жесткие совпадения, конкретно МФО, то есть ничего другого он не найдет
+            currentAgents = currentAgents.Where(p => p.AgentType.Title == "МФО").ToList(); // ищет жесткие совпадения, конкретно МФО, то есть ничего другого он не найдет
             if (ComboType.SelectedIndex == 2)
-            currentAgents = currentAgents.Where(p => p.AgentText == "ООО").ToList();
+            currentAgents = currentAgents.Where(p => p.AgentType.Title == "ООО").ToList();
             if (ComboType.SelectedIndex == 3)
-            currentAgents = currentAgents.Where(p => p.AgentText == "ЗАО").ToList();
+            currentAgents = currentAgents.Where(p => p.AgentType.Title == "ЗАО").ToList();
             if (ComboType.SelectedIndex == 4)
-            currentAgents = currentAgents.Where(p => p.AgentText == "МКК").ToList();
+            currentAgents = currentAgents.Where(p => p.AgentType.Title == "МКК").ToList();
             if (ComboType.SelectedIndex == 5)
-            currentAgents = currentAgents.Where(p => p.AgentText  == "ОАО").ToList();
+            currentAgents = currentAgents.Where(p => p.AgentType.Title == "ОАО").ToList();
             if (ComboType.SelectedIndex == 6)
-            currentAgents = currentAgents.Where(p => p.AgentText  == "ПАО").ToList();
+            currentAgents = currentAgents.Where(p => p.AgentType.Title == "ПАО").ToList();
 
             string NormalniyPhone(string Phone) //с помощью replace заменяем все специальные символы, пробелы на ничего, получается простоо убираем их
             {
@@ -86,7 +86,7 @@ namespace IshbulatovGlazza
         {
             CurrentPageList.Clear();
             CountRecords = TableList.Count; //записываем сколько всего записей в таблице
-            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage; // вычисляем сколько всего страниц получится(-1 чтобы при ровном кол-ве агентов 20.30 там, число страниц было не на 1 больше)
+            CountPage = (CountRecords + RecordsPage - 1) / RecordsPage; // вычисляем сколько всего страниц получится
 
             if (selectedPage.HasValue && selectedPage >= 0 && selectedPage < CountPage)
                 CurrentPage = selectedPage.Value; //проверка на выбор существующей страницы или номер страницы не отрицательный, если проверка удачная, переходим на выбранную страницу

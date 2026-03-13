@@ -34,7 +34,6 @@ namespace IshbulatovGlazza
         public string INN { get; set; }
         public string KPP { get; set; }
 
-
         public int SalesforYear //продажи за год высчитывается просто складывая количество продукта из таблицы продукт для каждой продажи
         {
             get
